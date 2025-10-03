@@ -1,6 +1,6 @@
 #include <Arduino.h>
 #include <WiFi.h>
-#include <WiFiUdp.h>
+#include <HTTPClient.h>
 #include "wifi_credentials.h"
 #include "papertrail_credentials.h"
 #include "PapertrailLogger.h"
@@ -23,11 +23,11 @@ void setup() {
     delay(5000);
     ESP.restart();
   }
-  errorLog = new PapertrailLogger(PAPERTRAIL_HOST, PAPERTRAIL_PORT, LogLevel::Error, "\033[0;31m", "papertrail-test", "testing");
-  warningLog = new PapertrailLogger(PAPERTRAIL_HOST, PAPERTRAIL_PORT, LogLevel::Warning, "\033[0;33m", "papertrail-test", "testing");
-  noticeLog = new PapertrailLogger(PAPERTRAIL_HOST, PAPERTRAIL_PORT, LogLevel::Notice, "\033[0;36m", "papertrail-test", "testing");
-  debugLog= new PapertrailLogger(PAPERTRAIL_HOST, PAPERTRAIL_PORT, LogLevel::Debug, "\033[0;32m","papertrail-test", "testing");
-  infoLog = new PapertrailLogger(PAPERTRAIL_HOST, PAPERTRAIL_PORT, LogLevel::Info, "\033[0;34m", "papertrail-test", "testing");
+  errorLog = new PapertrailLogger(SWO_HOSTNAME, SWO_TOKEN, LogLevel::Error, "\033[0;31m", "papertrail-test", "testing");
+  warningLog = new PapertrailLogger(SWO_HOSTNAME, SWO_TOKEN, LogLevel::Warning, "\033[0;33m", "papertrail-test", "testing");
+  noticeLog = new PapertrailLogger(SWO_HOSTNAME, SWO_TOKEN, LogLevel::Notice, "\033[0;36m", "papertrail-test", "testing");
+  debugLog= new PapertrailLogger(SWO_HOSTNAME, SWO_TOKEN, LogLevel::Debug, "\033[0;32m","papertrail-test", "testing");
+  infoLog = new PapertrailLogger(SWO_HOSTNAME, SWO_TOKEN, LogLevel::Info, "\033[0;34m", "papertrail-test", "testing");
   Serial.println("Up and running");
 }
 

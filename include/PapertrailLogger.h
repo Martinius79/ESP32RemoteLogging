@@ -1,7 +1,8 @@
 #ifndef __papertrail_logger_h__
 #define __papertrail_logger_h__
 
-class WiFiUDP;
+#include <HTTPClient.h>
+#include <WiFiClientSecure.h>
 
 enum LogLevel {
   Error = 3,
@@ -16,8 +17,9 @@ enum LogLevel {
 class PapertrailLogger: public Print  {
   private:
     String mHost;
-    int mPort;
-    WiFiUDP *mWifiUdp;
+    String mApiToken;
+    HTTPClient *mHttpClient;
+    WiFiClientSecure *mWifiClient;
     LogLevel mLevel;
     String mSystem;
     String mContext;
@@ -27,8 +29,9 @@ class PapertrailLogger: public Print  {
     int mBufferPos;
     
   public:
-    PapertrailLogger(String host, int port, LogLevel level, String color, String system, String context);
+    PapertrailLogger(String host, String apiToken, LogLevel level, String color, String system, String context);
     size_t write(uint8_t c);
+    ~PapertrailLogger();
 };
 
 #endif
